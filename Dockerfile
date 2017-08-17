@@ -26,8 +26,11 @@ RUN set -ex && \
     chmod a+x chromedriver
 
 # Set the locale for brakeman
-RUN apt-get update -qq && apt-get install -y -qq locales && \
-      locale-gen en_US.UTF-8
+RUN set -ex && \
+    apt-get update -qq && apt-get install -y -qq locales && \
+    echo "en_US UTF-8" > /etc/locale.gen && \
+    locale-gen en_US.UTF-8
+
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 COPY docker-entrypoint.sh /
