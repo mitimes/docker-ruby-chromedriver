@@ -28,7 +28,7 @@ RUN set -ex && \
 # Set the locale for brakeman
 RUN apt-get update -qq && apt-get install -y -qq locales && \
       locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8 LANGUAGE en_US:en LC_ALL en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
