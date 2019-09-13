@@ -1,9 +1,10 @@
-FROM ruby:2.3-slim
+FROM ruby:2.6.4-slim
 
 RUN set -ex && \
     apt-get update && \
     apt-get install -qq -y \
       build-essential \
+      gnupg2 \
       git \
       wget \
       unzip \
