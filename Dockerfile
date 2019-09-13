@@ -22,7 +22,7 @@ RUN set -ex && \
 
 RUN set -ex && \
     cd /usr/local/bin && \
-    wget http://chromedriver.storage.googleapis.com/2.29/chromedriver_linux64.zip && \
+    wget https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     chmod a+x chromedriver
 
