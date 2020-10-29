@@ -7,6 +7,7 @@ FROM ruby:2.6.5-slim
 # - postgresql-client-9.4: In case you want to talk directly to postgres
 # - gnupg2: needed to get google.com key
 # - locales: set the locale for brakeman
+# - libcurl4: needed by amplitude-api gem
 RUN \
   apt-get update && \
   apt-get install -qq -y \
@@ -18,13 +19,14 @@ RUN \
     libpq-dev \
     gnupg2 \
     locales \
+    libcurl4 \
     --fix-missing --no-install-recommends
 
 # All these additional things to get capybara with chromedriver running...
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
-# chrome is 77.0.3865.40
+# chrome is 85.0.4183.83
 RUN \
  apt-get update && \
  apt-get install -qq -y \
@@ -33,7 +35,7 @@ RUN \
 
 RUN \
   cd /usr/local/bin && \
-  wget https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip && \
+  wget https://chromedriver.storage.googleapis.com/85.0.4183.83/chromedriver_linux64.zip && \
   unzip chromedriver_linux64.zip && \
   chmod a+x chromedriver
 
